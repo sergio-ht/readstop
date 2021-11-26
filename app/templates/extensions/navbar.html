@@ -1,0 +1,83 @@
+<!-- Navbar Dark -->
+
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-gradient-dark z-index-3 py-3"
+>
+  <div class="container">
+    <a
+      class="navbar-brand text-white"
+      href="{{ url_for('main.home') }}"
+      rel="tooltip"
+      title="Designed and Coded by Creative Tim"
+      data-placement="bottom"
+    >
+    <strong>READSPOT</strong>
+    </a>
+
+    <button
+      class="navbar-toggler shadow-none ms-2"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navigation"
+      aria-controls="navigation"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+    </button>
+    <div
+      class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0"
+      id="navigation"
+    >
+      <ul class="navbar-nav navbar-nav-hover mx-auto">
+        {% if current_user.is_authenticated %}
+        
+        <li class="nav-item mx-2">
+          <a href="{{ url_for('users.account') }}" class="nav-link" role="button">
+            Account
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="{{ url_for('users.logout') }}" class="nav-link" role="button">
+            Logout
+          </a>
+          <li class="nav-item mx-2">
+            <a
+              href="{{ url_for('reviews.new_review') }}"
+              class="
+                nav-link
+                btn btn-lg
+                bg-gradient-primary
+                btn-round
+                mb-0
+                me-1
+                mt-2 mt-md-0
+                mx-3
+              "
+              role="button"
+            >
+              Review an Article
+            </a>
+          </li>
+        </li>
+        {% else %}
+        <li class="nav-item mx-2">
+          <a href="{{ url_for('users.login') }}" class="nav-link" role="button">
+            Login
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="{{ url_for('users.register') }}" class="nav-link" role="button">
+            Register
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->

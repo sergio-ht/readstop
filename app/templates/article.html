@@ -1,0 +1,39 @@
+{% extends "layout.html" %} {% block content %}
+<div class="col-md-8">
+  <div class="card card-plain card-blog">
+    <div class="card-image border-radius-lg position-relative">
+      <img
+        class="w-80 border-radius-lg move-on-hover shadow"
+        src="{{ url_for('static', filename='images/articles/' + article.image_file )}}"
+      />
+    </div>
+    <div class="card-body px-0">
+      <span
+        class="
+          text-gradient text-primary text-uppercase text-xs
+          font-weight-bold
+          my-2
+        "
+        >{{avg_rating}} / 10</span
+      >
+      <h5>
+        <a href="javascript:;" class="text-dark font-weight-bold"
+          >{{ article.title }}</a
+        >
+      </h5>
+      <p>
+        {% for tag in tags %}
+        <a href="{{ url_for('articles.tag', tag_name= tag) }}">
+          <span class="badge bg-gradient-info">{{tag}}</span>
+        </a>
+        {% endfor %}
+      </p>
+      <a href="{{ article.url }}" class="text-info icon-move-right"
+        >Read Original Article
+        <i class="fas fa-arrow-right text-sm"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

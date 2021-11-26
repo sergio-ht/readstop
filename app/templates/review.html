@@ -1,0 +1,93 @@
+{% extends "layout.html" %} {% block content %}
+<div class="col-md-8">
+  <div class="card card-plain card-blog">
+    <div class="card-body px-0">
+      <div class="author align-itmes-center">
+        <img
+          src="{{ url_for('static', filename='images/profile_pics/' + review.author.image_file )}}"
+          class="avatar shadow"
+        />
+        <div class="name ps-3 mb-3">
+          <span>{{ review.author.username }}</span>
+          <div class="stats">
+            <small
+              >Posted on {{ review.date_posted.strftime('%d-%m-%Y') }}</small
+            >
+          </div>
+        </div>
+      </div>
+      <span
+        class="
+          text-gradient text-primary text-uppercase text-xs
+          font-weight-bold
+          my-2
+        "
+        >{{ review.rating}} / 10
+      </span>
+      {% if review.author == current_user %}
+      <div>
+        <a
+          href="{{ url_for('reviews.update_review', review_id=review.id) }}"
+          class="btn btn-sm bg-gradient-info"
+          >Update</a
+        >
+        <button
+          type="submit"
+          class="btn btn-sm bg-gradient-warning"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteModal"
+        >
+          Delete
+        </button>
+      </div>
+      {% endif %}
+      <h5>Reviewing: {{ review.article.title }}</h5>
+      <p>{{ review.content }}</p>
+    </div>
+    <div class="author">
+      <a
+        class="btn btn-sm btn-outline-primary mx-3"
+        href="{{ url_for('articles.article', article_id=review.article.id) }}"
+        >More about the article</a
+      >
+      <a class="btn btn-sm btn-outline-primary" href="{{ review.article.url }}"
+        >Read orignal article</a
+      >
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="deleteModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Review?</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <form
+          action="{{ url_for('reviews.delete_review', review_id=review.id) }}"
+          method="POST"
+        >
+          <input type="submit" class="btn bg-gradient-warning" value="Delete" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

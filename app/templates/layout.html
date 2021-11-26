@@ -1,0 +1,132 @@
+<!--
+=========================================================
+* Soft UI Design System - v1.0.5
+=========================================================
+
+* Product Page:  https://www.creative-tim.com/product/soft-ui-design-system 
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="{{ url_for('static', filename='assets/img/apple-icon.png') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='assets/img/favicon.png') }}"
+    />
+    {% if title %}
+    <title>Proyecto - {{ title }}</title>
+    {% else %}
+    <title>Proyecto</title>
+    {% endif %}
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <!-- Nucleo Icons -->
+    <link
+      href="{{ url_for('static', filename='assets/css/nucleo-icons.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='assets/css/nucle-svg.css') }}"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/42d5adcbca.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="{{ url_for('static', filename='assets/css/nucleo-svg.css') }}"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="{{ url_for('static', filename='assets/css/soft-design-system.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="blog-author bg-gray-100">
+    <!--  NAVBAR  -->
+    {% include "extensions/navbar.html" %}
+
+    <section class="py-sm-7 py-5 position-relative">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+            messages %} {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">{{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+        </div>
+        
+        </div>
+      </div>
+      <div class="container">
+        
+      {% block content %} {% endblock content %}
+    </section>
+
+    <!-- -------- START FOOTER 5 w/ DARK BACKGROUND ------- -->
+    <footer
+      class="footer py-5 bg-gradient-dark position-relative overflow-hidden"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mx-auto mb-lg-0 mb-4 text-lg-start text-center">
+            
+            <p class="text-sm text-white opacity-8 mb-0">
+              Copyright ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+    <!-- -------- END FOOTER 5 w/ DARK BACKGROUND ------- -->
+    <!--   Core JS Files   -->
+    <script
+      src="{{ url_for('static', filename='assets/js/core/popper.min.js')}}"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{{ url_for('static', filename='assets/js/core/bootstrap.min.js')}}"
+      type="text/javascript"
+    ></script>
+    <script src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+    <!--  Plugin for Parallax, full documentation here: https://github.com/wagerfield/parallax  -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/parallax.min.js')}}"></script>
+    <!-- Control Center for Soft UI Kit: parallax effects, scripts for the example pages etc -->
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <script
+      src="{{ url_for('static', filename='assets/js/soft-design-system.min.js')}}"
+      type="text/javascript"
+    ></script>
+  </body>
+</html>
